@@ -14,7 +14,7 @@ class Recipe(Base):
     total_time: Mapped[int | None] = mapped_column(Integer, nullable=True)
     thumbnail_url: Mapped[str | None] = mapped_column(String, nullable=True)
 
-    ingredients: Mapped[list["RecipeIngredient"]] = relationship(
+    recipe_ingredients: Mapped[list["RecipeIngredient"]] = relationship(
         back_populates="recipe",
         cascade="all, delete-orphan",
     )
@@ -26,7 +26,7 @@ class Ingredient(Base):
     name: Mapped[str] = mapped_column(String, nullable=False)
     normalized_name: Mapped[str] = mapped_column(String, unique=True, nullable=False)
 
-    recipes: Mapped[list["RecipeIngredient"]] = relationship(
+    recipe_ingredients: Mapped[list["RecipeIngredient"]] = relationship(
         back_populates="ingredient",
     )
 
@@ -47,8 +47,8 @@ class RecipeIngredient(Base):
     unit: Mapped[str | None] = mapped_column(String, nullable=True)
 
     recipe: Mapped["Recipe"] = relationship(
-        back_populates="ingredients",
+        back_populates="recipe_ingredients",
     )
     ingredient: Mapped["Ingredient"] = relationship(
-        back_populates="recipes",
+        back_populates="recipe_ingredients",
     )
