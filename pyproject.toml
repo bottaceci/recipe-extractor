@@ -1,8 +1,11 @@
 [project]
 name = "recipe-extractor"
 version = "0.1.0"
-description = "Add your description here"
+description = "App to extract recipes and ingredients from cooking blogs through ML"
 readme = "README.md"
+authors = [
+    { name = "Cecilia Botta" }
+]
 requires-python = ">=3.12"
 dependencies = [
     "beautifulsoup4>=4.15.0",
@@ -13,6 +16,10 @@ dependencies = [
     "requests>=2.34.2",
     "sqlalchemy>=2.0.50",
 ]
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [
