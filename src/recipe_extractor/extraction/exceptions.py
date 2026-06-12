@@ -1,0 +1,2 @@
+class UnsupportedSourceError(ValueError):
+    pass
