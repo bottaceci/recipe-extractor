@@ -4,7 +4,7 @@ import re
 DESCRIPTORS_TO_REMOVE = [
     "fresh", "dried", "ground", "minced", "chopped", "grated", "peeled", "kosher", 
     "fine", "coarse", "large", "small", "medium", "optional", "extra", "virgin",
-    "white", "yellow", "roasted", "diced", "warm",
+    "white", "yellow", "roasted", "diced", "warm", "regular", "all-purpose"
 ]
 
 UNITS_TO_REMOVE = [
