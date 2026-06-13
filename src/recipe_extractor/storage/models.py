@@ -33,14 +33,10 @@ class Ingredient(Base):
 class RecipeIngredient(Base):
     __tablename__ = "recipe_ingredients"
 
-    recipe_id: Mapped[int] = mapped_column(
-        ForeignKey("recipes.id"),
-        primary_key=True,
-    )
-    ingredient_id: Mapped[int] = mapped_column(
-        ForeignKey("ingredients.id"),
-        primary_key=True,
-    )
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+
+    recipe_id: Mapped[int] = mapped_column(ForeignKey("recipes.id"))
+    ingredient_id: Mapped[int] = mapped_column(ForeignKey("ingredients.id"))
 
     raw_text: Mapped[str] = mapped_column(String, nullable=False)
     quantity: Mapped[float | None] = mapped_column(Float, nullable=True)
