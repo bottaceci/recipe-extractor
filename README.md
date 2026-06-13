@@ -1,81 +1,115 @@
 # Recipe Extractor
 
-## Status
-
-🚧 **This project is currently under active development.**
-
-The architecture, machine learning pipeline, and user interface are still evolving. Features and implementation details may change significantly before the first stable release.
-
----
-
 ## Overview
 
-Recipe Extractor is a machine learning and data engineering project whose goal is to automatically extract structured recipe information from cooking websites.
+Recipe Extractor is a Python application designed to automatically collect, parse, normalize, and store recipes from cooking websites.
 
-The project originated from a previous application that relied on custom scraping logic for each supported website. While effective, that approach required writing and maintaining site-specific extraction rules whenever a new recipe source was added.
+The project originated as a rule-based recipe scraper, but is being redesigned as a platform for experimenting with machine learning and information extraction techniques. The long-term goal is to compare deterministic scraping, machine learning models, and LLM-based approaches for extracting structured recipe data from raw HTML pages.
 
-The objective of this project is to replace those deterministic rules with a generalized extraction system capable of identifying recipes from arbitrary webpages and converting them into a structured format suitable for storage, search, and analysis.
+The project is currently in active development.
 
 ---
 
 ## Goals
 
-The project explores multiple approaches to recipe extraction:
+### Immediate Goals
 
-1. **Rule-Based Extraction**
+* Discover recipe pages from supported websites
+* Download and archive raw HTML pages
+* Extract structured recipe information
+* Normalize ingredient names and quantities
+* Store recipes in a searchable database
 
-   * Traditional handcrafted scraping utilities.
-   * Used as a baseline and data generation tool.
+### Long-Term Goals
 
-2. **Machine Learning Extraction**
-
-   * Models trained on previously collected recipe data.
-   * Automatic extraction of recipe fields from webpage content.
-
-3. **LLM-Based Extraction**
-
-   * Large Language Models used to generate structured recipe representations.
-   * Compared against custom-trained models in terms of accuracy, speed, cost, and maintainability.
-
----
-
-## Dataset
-
-The training dataset is built from previously collected recipes and consists of:
-
-* Raw webpage content
-* Cleaned webpage text
-* Structured recipe labels
-
-Each recipe is represented as a structured object containing information such as:
-
-* Title
-* Ingredients
-* Quantities
-* Units
-* Preparation time
-* Source website
-* Recipe instructions
-* Images and metadata
+* Build supervised datasets for recipe extraction tasks
+* Train machine learning models to parse ingredient information
+* Train models to extract recipes directly from web pages
+* Compare deterministic extraction against ML and LLM approaches
+* Provide a desktop application for recipe search and management
 
 ---
 
-## Database
+## Current Pipeline
 
-Recipes are stored in a relational database using SQLAlchemy.
+```text
+Website Discovery
+        ↓
+HTML Download
+        ↓
+HTML Archive
+        ↓
+Deterministic Extraction
+        ↓
+Ingredient Normalization
+        ↓
+Processed Dataset Generation
+        ↓
+Database Population
+```
 
-Core entities include:
+---
 
-* Recipes
-* Ingredients
-* Recipe–Ingredient relationships
+## Current Features
 
-This structure enables advanced filtering capabilities, including:
+### Recipe Discovery
 
-* Search by recipe name
-* Search by ingredient
-* Search by source website
-* Future support for tags, categories, and nutritional information
+The application can automatically discover recipe URLs from supported websites.
+
+Currently supported:
+
+* Two Plaid Aprons
+* Healthy Simple Yum
+
+### HTML Archiving
+
+Downloaded recipe pages are stored locally to:
+
+* enable offline processing
+* create reproducible datasets
+* support future machine learning experiments
+
+### Deterministic Recipe Extraction
+
+Recipes are extracted from raw HTML into a unified schema.
+
+Extracted information includes:
+
+* recipe title
+* source URL
+* source website
+* total preparation time
+* thumbnail image
+* ingredients
+* ingredient quantities
+* ingredient units
+
+### Ingredient Normalization
+
+Ingredient names are normalized to improve searchability and reduce duplicates.
+
+Examples:
+
+```text
+Kosher salt        → salt
+Fresh ginger       → ginger
+Knob of ginger     → ginger
+Ground pepper      → pepper
+```
+
+### Database Storage
+
+Recipes are stored in a SQLite database using SQLAlchemy.
+
+Current schema:
+
+```text
+recipes
+ingredients
+recipe_ingredients
+```
+
+This allows querying recipes by ingredient and supports future filtering capabilities.
 
 ---
 
@@ -84,96 +118,118 @@ This structure enables advanced filtering capabilities, including:
 ```text
 recipe-extractor/
 │
-├── config/
 ├── data/
 │   ├── raw_html/
 │   ├── processed/
-│   ├── exports/
-│   └── models/
+│   └── metadata.jsonl
 │
-├── notebooks/
-├── tests/
+├── scripts/
+│   ├── download_pages.py
+│   ├── debug_extractor.py
+│   ├── build_processed_dataset.py
+│   └── load_database.py
 │
-└── src/
-    └── recipe_extractor/
-        ├── config/
-        ├── scraping/
-        ├── extraction/
-        ├── storage/
-        ├── services/
-        ├── data/
-        └── ml/
+├── src/
+│   └── recipe_extractor/
+│       ├── data/
+│       ├── extraction/
+│       ├── scraping/
+│       └── storage/
+│
+└── tests/
 ```
 
 ---
 
-## Technology Stack
+## Technologies
 
 * Python
-* SQLAlchemy
 * BeautifulSoup
-* Pandas
-* Pydantic
+* Requests
+* SQLAlchemy
 * SQLite
-* PyTorch (planned)
-* Hugging Face Transformers (planned)
-* Flet (planned)
+* Pydantic
+* Pandas
 
-Package management is handled through **uv**.
+Planned:
+
+* Scikit-Learn
+* PyTorch
+* Hugging Face Transformers
+* Local LLMs
+
+---
+
+## Dataset Generation
+
+The project generates structured datasets from downloaded recipe pages.
+
+Current dataset:
+
+```text
+HTML page
+↓
+RecipeData object
+↓
+JSONL dataset
+```
+
+This dataset will serve as the foundation for future machine learning experiments.
+
+---
+
+## Current Results
+
+Using deterministic extraction:
+
+* 200 recipe pages processed
+* 194 recipes successfully stored
+* 787 unique normalized ingredients
+* 2119 recipe-ingredient relationships
+
+The extraction pipeline currently achieves greater than 99% successful parsing on the collected sample set.
 
 ---
 
 ## Roadmap
 
-### Phase 1 — Foundation
+### Phase 1 — Deterministic Extraction
 
-* [x] Legacy scraper analysis
-* [x] Database migration planning
-* [ ] New backend architecture
-* [ ] Dataset generation pipeline
+* [x] URL discovery
+* [x] HTML download
+* [x] HTML archiving
+* [x] Recipe extraction
+* [x] Ingredient normalization
+* [x] Database storage
 
-### Phase 2 — Data Collection
+### Phase 2 — Dataset Generation
 
-* [ ] Webpage acquisition
-* [ ] HTML storage
-* [ ] Dataset construction
-* [ ] Data validation
+* [ ] Ingredient parsing dataset
+* [ ] Recipe extraction dataset
+* [ ] Dataset quality evaluation
 
 ### Phase 3 — Machine Learning
 
-* [ ] Baseline extraction model
-* [ ] Training pipeline
-* [ ] Evaluation framework
-* [ ] Error analysis
+* [ ] Ingredient parsing model
+* [ ] Recipe extraction model
+* [ ] Model evaluation framework
 
-### Phase 4 — LLM Comparison
+### Phase 4 — LLM Experiments
 
-* [ ] Prompt-based extraction
-* [ ] Structured JSON generation
-* [ ] Cost and performance evaluation
+* [ ] LLM-based recipe extraction
+* [ ] Deterministic vs ML vs LLM comparison
 
-### Phase 5 — Application
+### Phase 5 — Desktop Application
 
-* [ ] Desktop user interface
-* [ ] Database browsing
-* [ ] Recipe search
-* [ ] Dataset refresh workflow
-* [ ] New website onboarding
+* [ ] Search interface
+* [ ] Ingredient filtering
+* [ ] Recipe browsing
+* [ ] Database management
 
 ---
 
-## Motivation
+## Status
 
-This project serves both as a practical utility and as a demonstration of end-to-end machine learning development.
+🚧 Active Development
 
-It combines:
-
-* Data collection
-* Data modeling
-* Natural language processing
-* Information extraction
-* Database design
-* Model evaluation
-* Application development
-
-The long-term objective is to build a system capable of transforming unstructured recipe webpages into a searchable and maintainable recipe database with minimal manual intervention.
+The deterministic extraction pipeline is operational and the project is currently transitioning toward dataset generation and machine learning experimentation.
