@@ -1,0 +1,266 @@
+.
+├── README.md
+├── config
+├── data
+│   ├── exports
+│   │   └── extraction_debug.csv
+│   ├── metadata.jsonl
+│   ├── models
+│   ├── processed
+│   │   ├── ingredients.jsonl
+│   │   └── recipes.jsonl
+│   ├── raw_html
+│   │   ├── healthysimpleyum
+│   │   │   ├── 1-pot-curry-lentil-soup.html
+│   │   │   ├── 10-best-mexican-salsa-recipes-you-need-to-try.html
+│   │   │   ├── 10-vegan-thanksgiving-recipes.html
+│   │   │   ├── 25-plant-based-recipes-for-hispanic-heritage-month.html
+│   │   │   ├── 3-bean-salad-recipe.html
+│   │   │   ├── agua-de-jamaica-recipe.html
+│   │   │   ├── air-fried-brussel-sprouts.html
+│   │   │   ├── albondigas-soup-recipe.html
+│   │   │   ├── apple-pecan-salad.html
+│   │   │   ├── arepa-recipe.html
+│   │   │   ├── arroz-integral-mexicano.html
+│   │   │   ├── bean-tostadas.html
+│   │   │   ├── black-bean-avocado-salad.html
+│   │   │   ├── black-bean-stuffed-sweet-potatoes.html
+│   │   │   ├── black-bean-taquitos.html
+│   │   │   ├── buffalo-tofu-wings.html
+│   │   │   ├── butternut-squash-pasta-sauce.html
+│   │   │   ├── calabaza-en-tacha.html
+│   │   │   ├── caprese-bruschetta.html
+│   │   │   ├── carlota-de-limon.html
+│   │   │   ├── cauliflower-ceviche.html
+│   │   │   ├── cauliflower-tacos.html
+│   │   │   ├── chamoy-recipe.html
+│   │   │   ├── charro-beans.html
+│   │   │   ├── chayote-soup.html
+│   │   │   ├── chickpea-flour-frittata-muffins.html
+│   │   │   ├── chickpea-salad.html
+│   │   │   ├── chilaquiles-recipe.html
+│   │   │   ├── chochoyotes-con-lentejas.html
+│   │   │   ├── chocolate-chia-pudding.html
+│   │   │   ├── corundas.html
+│   │   │   ├── creamy-chipotle-pasta.html
+│   │   │   ├── crispy-breaded-tofu.html
+│   │   │   ├── crispy-tofu-air-fryer.html
+│   │   │   ├── day-of-the-dead-food-and-recipes.html
+│   │   │   ├── easy-chia-jam.html
+│   │   │   ├── easy-lentil-tacos.html
+│   │   │   ├── easy-mazapan-recipe.html
+│   │   │   ├── easy-mexican-recipes.html
+│   │   │   ├── easy-mexican-salsa-recipe.html
+│   │   │   ├── enchiladas-michoacanas.html
+│   │   │   ├── enfrijoladas.html
+│   │   │   ├── ensalada-de-garbanzos.html
+│   │   │   ├── fluffy-vegan-waffles.html
+│   │   │   ├── frijoles-de-la-olla.html
+│   │   │   ├── garlic-avocado-toast.html
+│   │   │   ├── garlic-chili-oil-noodles.html
+│   │   │   ├── garlic-mashed-potatoes.html
+│   │   │   ├── greek-chickpea-salad.html
+│   │   │   ├── guacamole-recipe.html
+│   │   │   ├── healthy-refried-beans-recipe.html
+│   │   │   ├── heart-healthy-meal-ideas.html
+│   │   │   ├── hearty-lentil-bolognese.html
+│   │   │   ├── high-protein-plant-pb-shake.html
+│   │   │   ├── homemade-corn-tortillas-recipe.html
+│   │   │   ├── horchata-recipe.html
+│   │   │   ├── huaraches-de-nopal.html
+│   │   │   ├── jamaica-tacos-hibiscus-tacos.html
+│   │   │   ├── king-oyster-mushroom-tacos.html
+│   │   │   ├── lentil-kale-salad.html
+│   │   │   ├── lentil-wrap-recipe.html
+│   │   │   ├── lions-mane-recipe.html
+│   │   │   ├── loaded-vegan-nachos-recipe.html
+│   │   │   ├── mango-lemon-bars.html
+│   │   │   ├── mango-milk.html
+│   │   │   ├── mangonada-recipe.html
+│   │   │   ├── mason-jar-soups.html
+│   │   │   ├── menudo.html
+│   │   │   ├── mexican-atole-dairy-free.html
+│   │   │   ├── mexican-cabbage-slaw.html
+│   │   │   ├── mexican-christmas-meals-made-plant-based.html
+│   │   │   ├── mexican-escabeche.html
+│   │   │   ├── mexican-pickled-onions.html
+│   │   │   ├── mexican-potatoes.html
+│   │   │   ├── mexican-red-rice.html
+│   │   │   ├── mexican-sopes.html
+│   │   │   ├── mexican-spaghetti.html
+│   │   │   ├── mexican-torta.html
+│   │   │   ├── mexican-vegetable-soup.html
+│   │   │   ├── mexican-zucchini.html
+│   │   │   ├── miso-glazed-tofu.html
+│   │   │   ├── mole-verde-pipian.html
+│   │   │   ├── molletes.html
+│   │   │   ├── mujadara.html
+│   │   │   ├── nopal-salad.html
+│   │   │   ├── nopales-con-huevo.html
+│   │   │   ├── oatmeal-carrot-cake.html
+│   │   │   ├── orzo-salad.html
+│   │   │   ├── pan-dulce-cookies.html
+│   │   │   ├── peanut-noodle-salad.html
+│   │   │   ├── peanut-ramen-noodles.html
+│   │   │   ├── peanut-sauce-tofu.html
+│   │   │   ├── pico-de-gallo.html
+│   │   │   ├── poblano-bean-soup.html
+│   │   │   ├── poblano-cream-sauce.html
+│   │   │   ├── portobello-mushroom-tacos.html
+│   │   │   ├── post-mac-n-cheeze.html
+│   │   │   ├── potato-flautas.html
+│   │   │   ├── potato-tostadas.html
+│   │   │   └── pozole-verde.html
+│   │   └── twoplaidaprons
+│   │       ├── 10-minute-sesame-noodles.html
+│   │       ├── 2-ingredients-condensed-milk-truffles.html
+│   │       ├── 3-ingredient-corn-tortillas.html
+│   │       ├── 3-ingredient-matcha-ice-cream.html
+│   │       ├── 4-ingredient-flatbread.html
+│   │       ├── air-fryer-chicken-karaage.html
+│   │       ├── air-fryer-chicken-katsu.html
+│   │       ├── air-fryer-potato-wedges.html
+│   │       ├── all-natural-pink-lemonade-with-black-wolfberries.html
+│   │       ├── almond-linzer-cookies.html
+│   │       ├── apple-crumb-cake.html
+│   │       ├── asian-style-razor-clams.html
+│   │       ├── baileys-cinnamon-sugar-donuts.html
+│   │       ├── baked-char-siu-bao.html
+│   │       ├── baked-orange-cauliflower-chicken.html
+│   │       ├── banana-nut-bread.html
+│   │       ├── bananas-foster-french-toast.html
+│   │       ├── bang-bang-shrimp.html
+│   │       ├── bbq-mini-sausage-stir-fry.html
+│   │       ├── beef-and-broccoli-noodles.html
+│   │       ├── beef-and-broccoli.html
+│   │       ├── beef-bulgogi-meatballs.html
+│   │       ├── beef-bulgogi-with-vegetables.html
+│   │       ├── beef-wellington.html
+│   │       ├── beef-with-mixed-vegetable-stir-fry.html
+│   │       ├── best-cinnamon-rolls.html
+│   │       ├── best-homemade-pita-bread.html
+│   │       ├── biang-biang-noodles.html
+│   │       ├── bibim-guksu-korean-spicy-mixed-noodles.html
+│   │       ├── bihun-goreng.html
+│   │       ├── bingsu-korean-shaved-ice.html
+│   │       ├── black-pepper-chicken.html
+│   │       ├── black-sesame-mochi-muffins.html
+│   │       ├── black-sesame-tang-yuan.html
+│   │       ├── bok-choy-with-oyster-sauce.html
+│   │       ├── bourbon-pecan-ice-cream.html
+│   │       ├── brown-sugar-boba-ice-cream-bar.html
+│   │       ├── bubble-pillow-potato.html
+│   │       ├── bun-thit-nuong.html
+│   │       ├── butternut-squash-soup.html
+│   │       ├── buttery-caramel-sauce.html
+│   │       ├── cantonese-chow-mein.html
+│   │       ├── cantonese-shumai-siu-mai.html
+│   │       ├── carrot-cake.html
+│   │       ├── cauliflower-nachos.html
+│   │       ├── century-egg-and-pork-congee.html
+│   │       ├── char-siu-chicken.html
+│   │       ├── char-siu-chinese-bbq-pork.html
+│   │       ├── chashu.html
+│   │       ├── cheddar-green-onion-scones.html
+│   │       ├── cheesy-garlicy-christmas-tree-pull-apart-bread.html
+│   │       ├── cheesy-loaded-potato-bread.html
+│   │       ├── chicken-adobo-adobong-manok.html
+│   │       ├── chicken-and-broccoli.html
+│   │       ├── chicken-congee.html
+│   │       ├── chicken-corn-soup.html
+│   │       ├── chicken-karaage-japanese-fried-chicken.html
+│   │       ├── chicken-katsu.html
+│   │       ├── chicken-lo-mein.html
+│   │       ├── chicken-with-mixed-vegetable-stir-fry.html
+│   │       ├── chinese-broccoli-stir-fry.html
+│   │       ├── chinese-garlic-green-beans.html
+│   │       ├── chinese-new-year-rice-cake.html
+│   │       ├── chinese-pineapple-tart.html
+│   │       ├── chinese-pork-rib-soup.html
+│   │       ├── chinese-smashed-cucumber-salad.html
+│   │       ├── chinese-steamed-whole-fish-with-ginger-and-scallion.html
+│   │       ├── chinese-sticky-rice.html
+│   │       ├── chinese-takeout-bourbon-chicken.html
+│   │       ├── chirashi-sushi.html
+│   │       ├── chocolate-chip-scones.html
+│   │       ├── christmas-crack.html
+│   │       ├── cinnamon-sugar-king-cake.html
+│   │       ├── classic-pumpkin-pie.html
+│   │       ├── claypot-chicken-rice.html
+│   │       ├── coconut-mango-tapioca-pudding.html
+│   │       ├── cold-tofu.html
+│   │       ├── crab-rangoon-dip-with-crispy-baked-wontons.html
+│   │       ├── crab-rangoon.html
+│   │       ├── crack-sauce-prik-nam-pla.html
+│   │       ├── cranberry-chocolate-oatmeal-cookies.html
+│   │       ├── cream-puffs.html
+│   │       ├── creamy-citrus-vinaigrette-salad.html
+│   │       ├── creamy-kimchi-pasta.html
+│   │       ├── creamy-mashed-potatoes.html
+│   │       ├── creamy-peanut-butter-miso-ramen.html
+│   │       ├── creamy-shrimp-udon-with-omsom-sauce.html
+│   │       ├── creamy-spaghetti-carbonara-recipe.html
+│   │       ├── crispy-general-tsos-tofu.html
+│   │       ├── crispy-pork-belly-air-fryer.html
+│   │       ├── crispy-rice-salmon.html
+│   │       ├── cumin-lamb-noodles.html
+│   │       ├── dairy-free-blueberry-muffins.html
+│   │       ├── dalgona-coffee.html
+│   │       ├── dalgona-matcha-latte.html
+│   │       ├── din-tai-fung-cucumber-salad.html
+│   │       ├── doenjang-jjigae.html
+│   │       ├── durian-ice-cream-no-churn.html
+│   │       ├── dwaeji-galbijjim.html
+│   │       └── easy-10-minute-egg-drop-soup.html
+│   └── test_recipes.db
+├── legacy
+│   ├── app.py
+│   ├── create_database.py
+│   ├── database_functions.py
+│   ├── models.py
+│   ├── query.py
+│   ├── recipe_scraper.zip
+│   ├── recipes.db
+│   ├── scraping_functions.py
+│   └── website-list.txt
+├── main.py
+├── project_structure.txt
+├── pyproject.toml
+├── scripts
+│   ├── build_ingredient_dataset.py
+│   ├── build_processed_dataset.py
+│   ├── debug_extractor.py
+│   ├── download_pages.py
+│   ├── load_database.py
+│   └── test_save_recipe.py
+├── src
+│   └── recipe_extractor
+│       ├── __init__.py
+│       ├── config
+│       │   └── __init__.py
+│       ├── data
+│       │   ├── __init__.py
+│       │   ├── ingredients.py
+│       │   └── schemas.py
+│       ├── extraction
+│       │   ├── __init__.py
+│       │   ├── base.py
+│       │   ├── deterministic.py
+│       │   └── exceptions.py
+│       ├── ml
+│       │   └── __init__.py
+│       ├── scraping
+│       │   ├── __init__.py
+│       │   ├── discovery.py
+│       │   └── downloader.py
+│       ├── services
+│       │   └── __init__.py
+│       └── storage
+│           ├── __init__.py
+│           ├── database.py
+│           ├── models.py
+│           └── repositories.py
+├── tests
+└── uv.lock
+
+21 directories, 243 files

@@ -10,11 +10,12 @@ DESCRIPTORS_TO_REMOVE = [
 
 UNITS_TO_REMOVE = [
     "knob", "pinch", "pat", "to taste", "can", "cans", "packet", "package",
-    "loaf", "cups", "cloves"
+    "loaf", "cups", "cloves", "inch"
 ]
 
 OTHERS_TO_REMOVE = [
-    "of", "a", "or", "and", "&", "see above", "your choice", "few cracks"
+    "of", "a", "or", "and", "&", "see above", "your choice", "few cracks", "into",
+    "florets"
 ]
 
 def normalize_ingredient(ing_name: str) -> str:
