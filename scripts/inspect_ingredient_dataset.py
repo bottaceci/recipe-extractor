@@ -1,5 +1,4 @@
 from pathlib import Path
-from collections import Counter
 import pandas as pd
 
 from recipe_extractor.ml.dataset import load_ingredient_samples

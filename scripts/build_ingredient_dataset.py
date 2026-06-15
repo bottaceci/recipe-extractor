@@ -17,6 +17,8 @@ with open(OUTPUT_PATH, "a", encoding="utf-8") as f:
         if ingredients:
             for ingredient in ingredients:
                 record = {
+                    "recipe_url": sample["url"],
+                    "source": sample["source"],
                     "input_html": ingredient["raw_text"],
                     "quantity": ingredient["quantity"],
                     "unit": ingredient["unit"],
