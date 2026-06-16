@@ -1,0 +1,16 @@
+model:
+  name: t5-small
+
+data:
+  train_path: data/processed/ingredient_seq2seq_train.jsonl
+  val_path: data/processed/ingredient_seq2seq_val.jsonl
+  test_path: data/processed/ingredient_seq2seq_test.jsonl
+
+training:
+  output_dir: data/models/t5_ingredient_parser
+  max_input_length: 256
+  max_target_length: 96
+  batch_size: 4
+  learning_rate: 5e-5
+  num_train_epochs: 1
+  seed: 42
