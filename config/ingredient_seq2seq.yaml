@@ -14,3 +14,6 @@ training:
   learning_rate: 5e-5
   num_train_epochs: 1
   seed: 42
+
+inference:
+  model_path: data/models/t5_ingredient_parser
