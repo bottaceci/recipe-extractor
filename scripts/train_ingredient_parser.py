@@ -1,4 +1,6 @@
 from pathlib import Path
+import shutil
+import json
 
 from recipe_extractor.config.loaders import load_yaml_config
 from recipe_extractor.ml.training import (
@@ -13,11 +15,16 @@ from recipe_extractor.ml.training import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "config" / "ingredient_seq2seq.yaml"
+CONFIG_PATH = PROJECT_ROOT / "config" / "training_config.yaml"
 
 
 def main() -> None:
     config = load_yaml_config(CONFIG_PATH)
+
+    output_dir = Path(config["training"]["output_dir"])
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    shutil.copy2(CONFIG_PATH, output_dir / "training_config.yaml")
 
     print("Loading dataset...")
     dataset = load_seq2seq_dataset(config)
@@ -42,11 +49,23 @@ def main() -> None:
     )
 
     print("Starting training...")
-    trainer.train()
+    train_result = trainer.train()
 
-    output_dir = config["training"]["output_dir"]
+    print("Starting evaluation...")
+    eval_metrics = trainer.evaluate()
 
-    print(f"Saving model to {output_dir}...")
+    metrics = {
+        "train": train_result.metrics,
+        "eval": eval_metrics,
+    }
+
+    print(f"Saving model and metrics to {output_dir}...")
+    with open(output_dir / "metrics.json", "w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=2)
+
+    with open(output_dir / "log_history.json", "w", encoding="utf-8") as f:
+        json.dump(trainer.state.log_history, f, indent=2)
+
     trainer.save_model(output_dir)
     tokenizer.save_pretrained(output_dir)
 

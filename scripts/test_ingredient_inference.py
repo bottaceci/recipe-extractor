@@ -11,7 +11,7 @@ from recipe_extractor.ml.inference import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "config" / "ingredient_seq2seq.yaml"
+CONFIG_PATH = PROJECT_ROOT / "config" / "training_config.yaml"
 
 
 def main() -> None:
@@ -36,6 +36,11 @@ def main() -> None:
             tokenizer=tokenizer,
             config=config
         )
+
+        if not prediction.strip().startswith("{"):
+            prediction = "{" + prediction
+        if not prediction.strip().endswith("}"):
+            prediction = prediction + "}"
 
         print(f"""
     SAMPLE {i}

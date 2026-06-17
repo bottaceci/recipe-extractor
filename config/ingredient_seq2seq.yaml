@@ -7,13 +7,13 @@ data:
   test_path: data/processed/ingredient_seq2seq_test.jsonl
 
 training:
-  output_dir: data/models/t5_ingredient_parser
-  max_input_length: 256
-  max_target_length: 96
+  output_dir: data/models/t5_ingredient_parser_5ep
+  max_input_length: 512
+  max_target_length: 128
   batch_size: 4
   learning_rate: 5e-5
-  num_train_epochs: 1
+  num_train_epochs: 5
   seed: 42
 
 inference:
-  model_path: data/models/t5_ingredient_parser
+  model_path: data/models/t5_ingredient_parser_5ep
