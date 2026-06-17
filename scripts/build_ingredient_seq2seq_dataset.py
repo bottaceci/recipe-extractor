@@ -4,17 +4,16 @@ import json
 from recipe_extractor.ml.dataset import load_ingredient_samples
 
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATASET_PATH = PROJECT_ROOT / "data" / "processed" / "ingredients.jsonl"
-OUTPUT_PATH = PROJECT_ROOT / "data" / "processed" / "ingredient_seq2seq.jsonl"
+def main(output_dir: Path) -> None:
+    dataset_path = output_dir / "ingredients.jsonl"
+    output_path = output_dir / "ingredient_seq2seq.jsonl"
 
-if OUTPUT_PATH.exists():
-    OUTPUT_PATH.unlink()
+    if output_path.exists():
+        output_path.unlink()
+        
+    samples = load_ingredient_samples(dataset_path)
 
-def main() -> None:
-    samples = load_ingredient_samples(DATASET_PATH)
-
-    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         for sample in samples:
             target_obj = {
                 "quantity": sample.quantity,

@@ -5,9 +5,12 @@ from copy import copy
 from recipe_extractor.extraction.base import RecipeExtractor
 from recipe_extractor.extraction.exceptions import UnsupportedSourceError
 from recipe_extractor.data.schemas import RecipeData, IngredientData
-from recipe_extractor.data.ingredients import normalize_ingredient, amount_convertor
+from recipe_extractor.normalization.deterministic import normalize_ingredient, amount_convertor
 
 class DeterministicRecipeExtractor(RecipeExtractor):
+    def __init__(self, normalizer=normalize_ingredient):
+        self.normalizer = normalizer
+
     def extract(self, html: str, url: str) -> RecipeData:
         if "twoplaidaprons" in url:
             return self._extract_twoplaidaprons(html, url)
@@ -39,7 +42,7 @@ class DeterministicRecipeExtractor(RecipeExtractor):
             ing_unit = ing.find('span', class_='wprm-recipe-ingredient-unit')
             if ing_unit:
                 ing_unit = ing_unit.get_text()
-            ing_norm_name = normalize_ingredient(ing_name)
+            ing_norm_name = self.normalizer(ing_name)
             ingredients.append(
                 IngredientData(
                     name=ing_name,
@@ -110,7 +113,7 @@ class DeterministicRecipeExtractor(RecipeExtractor):
                 ing_unit = unit_span.get_text()
                 unit_span.decompose()
                 ing_name = ing.get_text(strip=True)
-                ing_norm_name = normalize_ingredient(ing_name)
+                ing_norm_name = self.normalizer(ing_name)
             elif ing.find("span"):
                 amount_spans = ing.find_all("span", attrs={"data-amount": True})
 
@@ -123,17 +126,17 @@ class DeterministicRecipeExtractor(RecipeExtractor):
 
                     ing_name = ing.get_text(" ", strip=True)
                     ing_name = re.sub(r"^[–\-—\s]+", "", ing_name)
-                    ing_norm_name = normalize_ingredient(ing_name)
+                    ing_norm_name = self.normalizer(ing_name)
                 else:
                     span = ing.find("span")
                     ing_amount = amount_convertor(span.get('data-amount'))
                     ing_unit = span.get('data-unit')
                     span.decompose()
                     ing_name = ing.get_text(strip=True)
-                    ing_norm_name = normalize_ingredient(ing_name)
+                    ing_norm_name = self.normalizer(ing_name)
             else: 
                 ing_name = ing.get_text(strip=True)
-                ing_norm_name = normalize_ingredient(ing_name)
+                ing_norm_name = self.normalizer(ing_name)
                 ing_amount = None
                 ing_unit = None
 

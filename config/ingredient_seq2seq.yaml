@@ -2,9 +2,9 @@ model:
   name: t5-small
 
 data:
-  train_path: data/processed/ingredient_seq2seq_train.jsonl
-  val_path: data/processed/ingredient_seq2seq_val.jsonl
-  test_path: data/processed/ingredient_seq2seq_test.jsonl
+  train_path: data/processed/deterministic/ingredient_seq2seq_train.jsonl
+  val_path: data/processed/deterministic/ingredient_seq2seq_val.jsonl
+  test_path: data/processed/deterministic/ingredient_seq2seq_test.jsonl
 
 training:
   output_dir: data/models/t5_ingredient_parser_5ep
