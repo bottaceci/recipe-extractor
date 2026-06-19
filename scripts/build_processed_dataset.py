@@ -6,14 +6,14 @@ from recipe_extractor.normalization.deterministic import normalize_ingredient
 
 metadata_path = Path("data/metadata.jsonl")
 
-def main(output_dir: Path, normalizer=normalize_ingredient) -> None:
+def main(output_dir: Path, normalizer=normalize_ingredient, normalizer_args={}) -> None:
     output_path = output_dir / "recipes.jsonl"
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     if output_path.exists():
         output_path.unlink()
 
-    extractor = DeterministicRecipeExtractor(normalizer=normalizer)
+    extractor = DeterministicRecipeExtractor(normalizer=normalizer, normalizer_args=normalizer_args)
     with open(metadata_path) as f:
         metadata_records = [json.loads(line) for line in f]
     rows = []

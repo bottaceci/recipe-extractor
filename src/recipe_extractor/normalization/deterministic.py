@@ -18,7 +18,7 @@ OTHERS_TO_REMOVE = [
     "florets"
 ]
 
-def normalize_ingredient(ing_name: str) -> str:
+def normalize_ingredient(ing_name: str, **kwargs) -> str:
     # Apply lowercase
     ing = ing_name.lower()
 
