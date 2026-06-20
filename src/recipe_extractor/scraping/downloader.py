@@ -14,12 +14,7 @@ def download_html(url: str) -> str:
 def source_from_url(url: str) -> str:
     domain = urlparse(url).netloc.lower()
 
-    if "twoplaidaprons" in domain:
-        return "twoplaidaprons"
-    if "healthysimpleyum" in domain:
-        return "healthysimpleyum"
-
-    return domain.replace(".", "_")
+    return domain[:-4] # take out '.com'
 
 def url_to_slug(url: str) -> str:
     return Path(urlparse(url).path).stem

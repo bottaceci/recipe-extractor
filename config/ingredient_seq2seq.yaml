@@ -2,18 +2,18 @@ model:
   name: t5-small
 
 data:
-  train_path: data/processed/deterministic/ingredient_seq2seq_train.jsonl
-  val_path: data/processed/deterministic/ingredient_seq2seq_val.jsonl
-  test_path: data/processed/deterministic/ingredient_seq2seq_test.jsonl
+  train_path: data/processed/llm/ingredient_seq2seq_train.jsonl
+  val_path: data/processed/llm/ingredient_seq2seq_val.jsonl
+  test_path: data/processed/llm/ingredient_seq2seq_test.jsonl
 
 training:
-  output_dir: data/models/t5_ingredient_parser_5ep
+  output_dir: data/models/t5_parser_10ep_llm_norm_bigger_lr
   max_input_length: 512
   max_target_length: 128
   batch_size: 4
-  learning_rate: 5e-5
-  num_train_epochs: 5
+  learning_rate: 1e-4
+  num_train_epochs: 10
   seed: 42
 
 inference:
-  model_path: data/models/t5_ingredient_parser_5ep
+  model_path: data/models/t5_parser_10ep_llm_norm_bigger_lr

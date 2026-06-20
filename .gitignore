@@ -13,5 +13,8 @@ wheels/
 notes.md
 notebooks/
 old_readme/
-data/models/
 .env
+
+# Data
+data/models/
+data/raw_html/

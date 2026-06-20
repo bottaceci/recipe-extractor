@@ -15,16 +15,16 @@ from recipe_extractor.ml.training import (
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "config" / "training_config.yaml"
+CONFIG_PATH = PROJECT_ROOT / "config" / "ingredient_seq2seq.yaml"
 
 
-def main() -> None:
-    config = load_yaml_config(CONFIG_PATH)
+def main(config_path: Path) -> None:
+    config = load_yaml_config(config_path)
 
     output_dir = Path(config["training"]["output_dir"])
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    shutil.copy2(CONFIG_PATH, output_dir / "training_config.yaml")
+    shutil.copy2(config_path, output_dir / "training_config.yaml")
 
     print("Loading dataset...")
     dataset = load_seq2seq_dataset(config)
@@ -60,7 +60,7 @@ def main() -> None:
     }
 
     print(f"Saving model and metrics to {output_dir}...")
-    with open(output_dir / "metrics.json", "w", encoding="utf-8") as f:
+    with open(output_dir / "train_metrics.json", "w", encoding="utf-8") as f:
         json.dump(metrics, f, indent=2)
 
     with open(output_dir / "log_history.json", "w", encoding="utf-8") as f:
@@ -73,4 +73,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(config_path=CONFIG_PATH)

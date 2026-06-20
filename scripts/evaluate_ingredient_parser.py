@@ -15,8 +15,7 @@ from recipe_extractor.ml.evaluation import (
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-CONFIG_PATH = PROJECT_ROOT / "data" / "models" / "t5_ingredient_parser_5ep" / "training_config.yaml"
-
+CONFIG_PATH = PROJECT_ROOT / "config" / "ingredient_seq2seq.yaml"
 metric_columns = [
     "valid_json",
     "name_match",
@@ -28,8 +27,8 @@ metric_columns = [
 ]
 
 
-def main() -> None:
-    config = load_yaml_config(CONFIG_PATH)
+def main(config_path: Path) -> None:
+    config = load_yaml_config(config_path)
 
     output_dir = Path(config["training"]["output_dir"])
 
@@ -73,9 +72,10 @@ def main() -> None:
     rows_df = pd.DataFrame(rows)
     print(rows_df[metric_columns].mean())
     rows_df.to_csv(output_dir / "ingredient_parser_evaluation.csv", index=False)
+    rows_df[metric_columns].mean().to_csv(output_dir / "evaluation_metrics.csv", index=True)
 
     print("Evaluation complete.")
 
 
 if __name__ == "__main__":
-    main()
+    main(config_path=CONFIG_PATH)
