@@ -1,5 +1,45 @@
 import requests
 from bs4 import BeautifulSoup as bs
+from xml.etree.ElementTree import fromstring
+from urllib.parse import urlparse
+from pathlib import Path
+import json
+
+METADATA_FILE_PATH = Path("data/metadata_web.jsonl")
+
+def discover_urls(xml_map_url, check_english=False) -> dict[str,str]:
+    xml_map = requests.get(xml_map_url)
+    root = fromstring(xml_map.content)
+
+    recipe_urls: set[str] = set()
+    metadata = {}
+
+    for i in range(len(root)):
+        recipe_url = root[i][0].text
+        thumbnail_url = root[i][2][0].text
+
+        if check_english:
+            html = requests.get(recipe_url).content
+            soup = bs(html, 'html.parser')
+            if not soup.html["lang"] in ['en-US', 'en-UK', 'en']:
+                continue
+
+        metadata = {
+            "url": recipe_url,
+            "source": source_from_url(recipe_url),
+            "thumbnail_url": thumbnail_url
+        }
+
+def source_from_url(url: str) -> str:
+    domain = urlparse(url).netloc.lower()
+
+    return domain[:-4] # take out '.com'
+
+def save_metadata(metadata: dict, metadata_path: Path = METADATA_FILE_PATH) -> None:
+    metadata_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(metadata_path, "a", encoding="utf-8") as f:
+        f.write(json.dumps(metadata) + "\n")
 
 def discover_twoplaidaprons_urls() -> list[str]:
 	

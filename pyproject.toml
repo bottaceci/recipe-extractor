@@ -1,5 +1,5 @@
 [project]
-name = "recipe-extractor"
+name = "recipe-extractor-old"
 version = "0.1.0"
 description = "App to extract recipes and ingredients from cooking blogs through ML"
 readme = "README.md"

@@ -446,3 +446,5 @@ Latest results:
 The deterministic extraction pipeline is operational and the project is currently transitioning toward dataset generation and machine learning experimentation.
 
 The ML model can reliably parse all ingredient attributes and compute the normalized ingredient name starting from the relative HTML snippet.
+
+Developement has stopped for now. The method of extraction of the information, starting from the raw HTML page, is not optimal, and may structural scripts can be improved upon. A new *Recipe Extractor* project was started, using a multi classifier model on the recipe text instead of parsing the HTML.

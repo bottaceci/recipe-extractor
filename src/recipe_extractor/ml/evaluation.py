@@ -60,7 +60,7 @@ def compare_normalized_name_soft(pred: dict, target: dict) -> bool:
         == canonicalize_ingredient_name(target.get("normalized_name"))
     )
 
-def evaluate_prediction(prediction_text, target_text) -> dict:
+def evaluate_ingredient_prediction(prediction_text, target_text) -> dict:
     prediction = parse_prediction(prediction_text)
     target = parse_prediction(target_text)
 

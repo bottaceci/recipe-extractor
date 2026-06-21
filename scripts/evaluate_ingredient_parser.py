@@ -11,7 +11,7 @@ from recipe_extractor.ml.inference import (
     predict_ingredient,
 )
 from recipe_extractor.ml.evaluation import (
-    evaluate_prediction,
+    evaluate_ingredient_prediction,
 )
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -53,7 +53,7 @@ def main(config_path: Path) -> None:
             config=config
         )
 
-        metrics = evaluate_prediction(prediction_text, target_text)
+        metrics = evaluate_ingredient_prediction(prediction_text, target_text)
 
         row = {
             "input": input_html,

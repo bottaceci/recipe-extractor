@@ -3,7 +3,7 @@ from pathlib import Path
 import requests
 import json
 
-METADATA_FILE_PATH = Path("data/metadata.jsonl")
+METADATA_FILE_PATH = Path("data/metadata_local.jsonl")
 HTML_PATH_ROOT = Path("data/raw_html")
 
 def download_html(url: str) -> str:

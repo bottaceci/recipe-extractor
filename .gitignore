@@ -10,7 +10,7 @@ wheels/
 .venv
 
 # Other
-notes.md
+notes/
 notebooks/
 old_readme/
 .env
